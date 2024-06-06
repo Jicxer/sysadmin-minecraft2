@@ -57,6 +57,12 @@ The install script ```install.sh``` will install the dependencies AWS CLI, Terra
 ### Terraform
 [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code) is an open-source tool that allows the user to manage AWS along with other provides such as Docker. It provides readable configuration language that can help users write and deploy infastructure of code quickly.
 
+### Docker
+A [Minecraft docker image](https://github.com/itzg/docker-minecraft-server) will be used for this pipeline.
+This docker image uses docker compose and is compatible with various server types.
+The documentation is provided [here](https://docker-minecraft-server.readthedocs.io/en/latest/)
+
+
 ### Amazon Web Services
 The user will need to set-up their AWS credentials for Terraform functionality.
 Copy and paste the [AWS credentials](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html) into ```~/.aws/credentials``` file.
@@ -126,7 +132,9 @@ We would also want to ensure that the Minecraft server automatically restarts on
 
 [AWS Credentials](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html)
 
-[Minecraft docker image](https://github.com/itzg/docker-minecraft-server)
+[Minecraft docker image github](https://github.com/itzg/docker-minecraft-server)
+
+[Minecraft docker image documentation](https://docker-minecraft-server.readthedocs.io/en/latest/)
 
 
 
