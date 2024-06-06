@@ -1,7 +1,7 @@
 # sysadmin-minecraft2
 Course Project Part 2 for System Administrator Spring 2024. We will be automating a minecraft server
 
-<a href="top"></a>
+<a name="readme-top"></a>
 
 # Table of Contents
 1. [Background](#background)
