@@ -18,7 +18,9 @@ Course Project Part 2 for System Administrator Spring 2024. We will be automatin
 
 ## Background 
 As a system administrator, it is our job to automate processes. We will automate the provisioning, configuration, and the set up of a Minecraft server using 
-Infastructure as Code (IAC) tools like Terraform. Our objective is to ensure that a server can be set up efficiently and quickly across different environments.
+Infastructure as Code (IAC) tools like Terraform. 
+
+Our objective is to ensure that a server can be set up efficiently and quickly across different environments.
 We will be using Terraform to automate the process of setting up a Minecraft server using Amazon Web Services (AWS).
 We will provision resources such as EC2 and have a configured network Public IPv4 address to which players can connect to.
 Additionally, we will have the Minecraft server able to restart when the provisioned resources restart along with a proper shutdown.
