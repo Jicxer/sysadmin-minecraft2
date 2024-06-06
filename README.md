@@ -160,7 +160,8 @@ Terraform script will handle:
     This is for the purpose of ssh into the instance and install required dependencies.
 - AWS Credentials
 
-4. 
+4. Run Ansible Playbook to configure EC2 Instance
+```
 
 4. Log into Minecraft
 
@@ -178,8 +179,13 @@ Clone the repository and navigate to the project directory
 git clone https://github.com/Jicxer/sysadmin-minecraft2.git
 cd sysadmin-minecraft2.git
 ``` 
+2. Install dependencies
 
-2. Initialize and apply the Terraform resources and configuration
+```
+./install.sh
+```
+
+3. Initialize and apply the Terraform resources and configuration
 
 ```
 terraform init -upgrade
@@ -187,7 +193,7 @@ terraform apply
 ```
 
 This will create the EC2 instance and generate the 'inventory.ini" with a public instance IP address from the EC2 instance.
-3. Start the Ansible playbook using the YAML configurations
+4. Start the Ansible playbook using the YAML configurations
 ```
 ansible-playbook -i inventory.ini playbook.yml
 ```
@@ -197,9 +203,15 @@ ansible-playbook -i inventory.ini playbook.yml
 
 ### Connecting
 
+Once Ansible Playbook has finished configuring the EC2 Instance, the player can now connect to the Minecraft Server.
+
+The Public IP address is provided as an output after running Ansible.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Next Steps
+
+Installing Mods on Minecraft
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
