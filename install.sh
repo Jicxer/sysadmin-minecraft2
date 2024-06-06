@@ -1,12 +1,12 @@
 #!/bin/bash
 
-apt-get update
+sudo apt-get update
 # Check dependencies
 
 # Install Git
 if ! command -v git >/dev/null 2>&1; then
     echo "Git is not installed. Installing..."
-    apt-get install git -y
+    sudo apt-get install git -y
 fi
 
 # Check if Terraform is already installed
@@ -58,10 +58,9 @@ if command -v ansible >/dev/null 2>&1; then
     ansible --version
 else
     echo "Ansible is not installed. Proceeding with installation..."
-    sudo apt-get update
-    sudo apt-get install software-properties-common
+    sudo apt-get install software-properties-common -y 
     sudo apt-add-repository --yes --update ppa:ansible/ansible
-    sudo apt-get install ansible
+    sudo apt-get install ansible -y
     ansible --version
 fi
 

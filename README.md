@@ -48,6 +48,7 @@ To utilize this pipeline, the user will need the following resources and depende
 - AWS CLI
 - AWS Account
 - Terraform
+- Minecraft Client
 - Ansible
 - Docker
 
@@ -55,6 +56,23 @@ The install script ```install.sh``` will install the dependencies AWS CLI, Terra
 
 ### Terraform
 [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code) is an open-source tool that allows the user to manage AWS along with other provides such as Docker. It provides readable configuration language that can help users write and deploy infastructure of code quickly.
+
+## Amazon Web Services
+The user will need to set-up their AWS credentials for Terraform functionality.
+Copy and paste the [AWS credentials](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html) into ```~/.aws/credentials``` file.
+
+The formating would look similar to this:
+```
+[default]
+aws_access_key_id=ASIAIOSFODNN7EXAMPLE
+aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+aws_session_token = IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZVERYLONGSTRINGEXAMPLE
+
+[user1]
+aws_access_key_id=ASIAI44QH8DHBEXAMPLE
+aws_secret_access_key=je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY
+aws_session_token = fcZib3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZVERYLONGSTRINGEXAMPLE
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -78,3 +96,5 @@ The install script ```install.sh``` will install the dependencies AWS CLI, Terra
 
 # Resources
 [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code)
+[AWS Credentials](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html)
+[Minecraft docker image](https://github.com/itzg/docker-minecraft-server)
