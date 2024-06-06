@@ -52,4 +52,27 @@ else
 
 fi
 
+# Check if Ansible is already installed
+if command -v ansible >/dev/null 2>&1; then
+    echo "Ansible is already installed."
+    ansible --version
+else
+    echo "Ansible is not installed. Proceeding with installation..."
+    sudo apt-get update
+    sudo apt-get install software-properties-common
+    sudo apt-add-repository --yes --update ppa:ansible/ansible
+    sudo apt-get install ansible
+    ansible --version
+fi
+
+# Check if Docker is already installed
+if command -v docker >/dev/null 2>&1; then
+    echo "Docker is already installed."
+    docker --version
+else
+    echo "Docker is not installed. Proceeding with installation..."
+    sudo apt-get install docker.io
+    docker --version
+fi
+
 echo "Installation script complete"

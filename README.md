@@ -49,8 +49,13 @@ To utilize this pipeline, the user will need the following resources and depende
 - AWS Account
 - Terraform
 - Ansible
+- Docker
 
 The install script ```install.sh``` will install the dependencies AWS CLI, Terraform, and Git if the user does not already have it.
+
+### Terraform
+[Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code) is an open-source tool that allows the user to manage AWS along with other provides such as Docker. It provides readable configuration language that can help users write and deploy infastructure of code quickly.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Diagram
@@ -70,3 +75,6 @@ The install script ```install.sh``` will install the dependencies AWS CLI, Terra
 ## Next Steps
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+# Resources
+[Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code)
