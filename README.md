@@ -62,6 +62,16 @@ A [Minecraft docker image](https://github.com/itzg/docker-minecraft-server) will
 This docker image uses docker compose and is compatible with various server types.
 The documentation is provided [here](https://docker-minecraft-server.readthedocs.io/en/latest/)
 
+### Ansible
+
+Ansible allows for infastructure as code. It is used for provisioning and configuraiton. The configuration will be mostly accomplished by YAML using the ansible playbook. 
+
+#### Ansible Playbook and YAML
+Ansible Playbook will contain a list of instrutions for configuration written in YAML. The purpose of the playbook for the project is to install:
+- Docker
+- Minecraft Server Docker Image
+- Docker dependencies
+- Enabling Minecraft server on System Start up
 
 ### Amazon Web Services
 The user will need to set-up their AWS credentials for Terraform functionality.
@@ -100,6 +110,16 @@ Navigating to the AWS CLI credentials section will reveal the current session's 
 
 Be sure to copy these contents to paste into the ```~/.aws/credentials``` file.
 
+Depending on what profile you are using, edit the profile variable in variables.tf
+```
+variable "profile"{
+    description = "AWS Learner Lab Profile"
+    default = "learner_lab"
+}
+```
+For the case of this tutorial, the profile was under "learner_lab". Feel free to change this depending on what profile you placed the credentials under.
+This will specify what AWS account will be used.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Diagram
@@ -116,12 +136,31 @@ This is to ensure that we are able to provision resources and build the infastru
 
 3. Run the Terraform script
 
+``` 
+terraform init
+terraform apply
+```
+
 Terraform script will handle:
-- Minecraft Dcoker Image
+- Minecraft Server Docker Image
 - AWS Resource Provision
+
+    This will create an EC2 instance called "minecraft"
+    
+    The instance type will be "t2.small" and the operating system will be Debian AMI.
+    
+    This will also create an ansible inventory "inventory.ini" that will be used to SSH into the instance and install the Minecraft Server Docker Image dependencies.
+
+    A new key-pair will be created for the sake of Ansible connection to the EC2.
+
 - IPv4 Address assignment for Minecraft Server
+- Minecraft Security Group
+
+    The security group will allow the Minecraft port of 25565 and the ssh port of 22 from any CIDR block or IP. 
+    This is for the purpose of ssh into the instance and install required dependencies.
 - AWS Credentials
 
+4. 
 
 4. Log into Minecraft
 
