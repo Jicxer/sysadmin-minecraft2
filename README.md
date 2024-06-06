@@ -43,6 +43,14 @@ Additionally, we will have the Minecraft server able to restart when the provisi
 
 ## Requirements
 
+To utilize this pipeline, the user will need the following resources and dependencies:
+- Git 
+- AWS CLI
+- AWS Account
+- Terraform
+- Ansible
+
+The install script ```install.sh``` will install the dependencies AWS CLI, Terraform, and Git if the user does not already have it.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Diagram
