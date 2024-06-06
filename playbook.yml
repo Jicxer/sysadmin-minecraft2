@@ -1,0 +1,109 @@
+---
+- hosts: minecraft
+  become: yes
+  tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Install dependencies
+      apt:
+        name:
+          - ca-certificates
+          - curl
+          - gnupg
+        state: present
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt:
+        name: 
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+        state: latest
+        update_cache: true
+
+    - name: Enable Docker service
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+
+    - name: Create minecraft-server directory
+      file:
+        path: /minecraft-server
+        state: directory
+        mode: '0755'
+
+        
+    - name: Create Docker Compose file
+      copy:
+        dest: /minecraft-server/docker-compose.yml
+        content: |
+          version: '3'
+          services:
+            mc:
+              image: itzg/minecraft-server
+              restart: always
+              tty: true
+              stdin_open: true
+              ports:
+                - "25565:25565"
+              environment:
+                EULA: "TRUE"
+              volumes:
+                - ./data:/data
+      notify: Start Minecraft server
+
+    - name: Ensure the Minecraft server starts on reboot
+      copy:
+        dest: /etc/systemd/system/minecraft.service
+        content: |
+          [Unit]
+          Description=Minecraft Server
+          Requires=docker.service
+          After=docker.service
+
+          [Service]
+          WorkingDirectory=/minecraft-server
+          ExecStart=/usr/bin/docker-compose up
+          ExecStop=/usr/bin/docker-compose down
+          Restart=always
+          User=root
+
+          [Install]
+          WantedBy=multi-user.target
+      notify: Reload systemd
+
+  handlers:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Start Minecraft server
+      command: sudo docker compose up -d
+      args:
+        chdir: /minecraft-server
+
+    - name: Check if service is running
+      command: sudo docker compose ps
+      args:
+        chdir: /minecraft-server
+
+    - name: Enable and start Minecraft service
+      systemd:
+        name: minecraft
+        enabled: yes
+        state: started

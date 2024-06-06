@@ -122,6 +122,7 @@ Terraform script will handle:
 - IPv4 Address assignment for Minecraft Server
 - AWS Credentials
 
+
 4. Log into Minecraft
 
 Use the Public IPv4 that was established earlier from Terraform infastructure setup.
@@ -142,9 +143,16 @@ cd sysadmin-minecraft2.git
 2. Initialize and apply the Terraform resources and configuration
 
 ```
-terraform init
+terraform init -upgrade
 terraform apply
 ```
+
+This will create the EC2 instance and generate the 'inventory.ini" with a public instance IP address from the EC2 instance.
+3. Start the Ansible playbook using the YAML configurations
+```
+ansible-playbook -i inventory.ini playbook.yml
+```
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -159,12 +167,16 @@ terraform apply
 # Resources
 [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code)
 
+[Terraform Hashicorp](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance)
+
 [AWS Credentials](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html)
 
 [Minecraft docker image github](https://github.com/itzg/docker-minecraft-server)
 
 [Minecraft docker image documentation](https://docker-minecraft-server.readthedocs.io/en/latest/)
 
+[Adding IP Address to Terraform](https://stackoverflow.com/questions/46763287/i-want-to-identify-the-public-ip-of-the-terraform-execution-environment-and-add)
 
+[Install Docker using Ansible Playbook](https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-20-04)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
