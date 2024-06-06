@@ -79,9 +79,21 @@ If the user is using an AWS Learner Lab version, they will need to make modifica
 Follow the steps below to configure AWS credentials:
 1. Start Learner Lab
 
-Do this by clicking on the AWS Icon on the top left corner
+Do this by clicking on "Start Lab" button.
+2. Once the lab has started, navigate to AWS Details
 
-2. 
+This will show details about the current Lab session. The user should be able to access the AWS CLI credentials for this session by clicking on the Show button next to
+"AWS CLI"
+
+3. Copy credentials
+
+Navigating to the AWS CLI credentials section will reveal the current session's variables needed for authentication:
+- aws_secret_key
+- aws_secret_access_key
+- aws_session_token
+
+Be sure to copy these contents to paste into the ```~/.aws/credentials``` file.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Diagram
@@ -91,6 +103,8 @@ We would also want to ensure that the Minecraft server automatically restarts on
 1. Install dependencies using the install.sh script
         Installing dependencies ensure that this pipeline will work accordingly.
 2. Set up AWS configuration and credentials.
+3. Run the Terraform script
+4. Log into Minecraft
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
