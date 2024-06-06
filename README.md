@@ -107,7 +107,9 @@ The major steps in the pipeline include defining and creating AWS resources such
 We would also want to ensure that the Minecraft server automatically restarts on reboot.
 
 1. Install dependencies using the install.sh script
-        Installing dependencies ensure that this pipeline will work accordingly.
+
+Installing dependencies ensure that this pipeline will work accordingly.
+
 2. Set up AWS configuration and credentials.
 3. Run the Terraform script
 4. Log into Minecraft
