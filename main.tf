@@ -68,7 +68,7 @@ resource "aws_security_group" "minecraft_securitygroup" {
 
 resource "aws_instance" "minecraft" {
   ami                         = "ami-0c2644caf041bb6de" # Debian AMI
-  instance_type               = "t2.micro"
+  instance_type               = "t2.small"
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.minecraft_securitygroup.id]
   key_name                    = aws_key_pair.deployer.key_name
