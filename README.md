@@ -73,6 +73,8 @@ Ansible Playbook will contain a list of instrutions for configuration written in
 - Docker dependencies
 - Enabling Minecraft server on System Start up
 
+After running Ansible Playbook, the EC2 instance will have all the requirements to run the Minecraft Server.
+
 ### Amazon Web Services
 The user will need to set-up their AWS credentials for Terraform functionality.
 Copy and paste the [AWS credentials](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html) into ```~/.aws/credentials``` file.
@@ -161,9 +163,8 @@ Terraform script will handle:
 - AWS Credentials
 
 4. Run Ansible Playbook to configure EC2 Instance
-```
 
-4. Log into Minecraft
+5. Log into Minecraft
 
 Use the Public IPv4 that was established earlier from Terraform infastructure setup.
 
@@ -175,10 +176,12 @@ Use the Public IPv4 that was established earlier from Terraform infastructure se
 1. Set up the Git Repository
 
 Clone the repository and navigate to the project directory
+
 ```
 git clone https://github.com/Jicxer/sysadmin-minecraft2.git
 cd sysadmin-minecraft2.git
-``` 
+```
+
 2. Install dependencies
 
 ```
@@ -194,10 +197,10 @@ terraform apply
 
 This will create the EC2 instance and generate the 'inventory.ini" with a public instance IP address from the EC2 instance.
 4. Start the Ansible playbook using the YAML configurations
+
 ```
 ansible-playbook -i inventory.ini playbook.yml
 ```
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -212,7 +215,6 @@ The Public IP address is provided as an output after running Ansible.
 ## Next Steps
 
 Installing Mods on Minecraft
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Resources
