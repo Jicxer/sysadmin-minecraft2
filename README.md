@@ -8,10 +8,10 @@ Course Project Part 2 for System Administrator Spring 2024. We will be automatin
 2. [Guidelines](#guidelines)
 3. [Requirements](#requirements)
 4. [Diagram](#diagram)
-5. [Usage](#usage)
-6. [Commands](#commands)
-7. [Connecting to server](#connect)
-8. [Next Steps](#next-steps)
+5. [Commands](#commands)
+6. [Connecting to server](#connect)
+7. [Next Steps](#next-steps)
+8. [Resources](#resources)
 
 
 # Minecraft Server Setup on AWS
@@ -57,7 +57,7 @@ The install script ```install.sh``` will install the dependencies AWS CLI, Terra
 ### Terraform
 [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code) is an open-source tool that allows the user to manage AWS along with other provides such as Docker. It provides readable configuration language that can help users write and deploy infastructure of code quickly.
 
-## Amazon Web Services
+### Amazon Web Services
 The user will need to set-up their AWS credentials for Terraform functionality.
 Copy and paste the [AWS credentials](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html) into ```~/.aws/credentials``` file.
 
@@ -74,13 +74,26 @@ aws_secret_access_key=je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY
 aws_session_token = fcZib3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZVERYLONGSTRINGEXAMPLE
 ```
 
+#### AWS Learning Lab
+If the user is using an AWS Learner Lab version, they will need to make modifications to how the credentials assignment work for AWS CLI.
+Follow the steps below to configure AWS credentials:
+1. Start Learner Lab
+
+Do this by clicking on the AWS Icon on the top left corner
+
+2. 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Diagram
+The major steps in the pipeline include defining and creating AWS resources such as EC2.
+We would also want to ensure that the Minecraft server automatically restarts on reboot.
+
+1. Install dependencies using the install.sh script
+        Installing dependencies ensure that this pipeline will work accordingly.
+2. Set up AWS configuration and credentials.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Usage
 
 ### Commands
 
@@ -96,5 +109,11 @@ aws_session_token = fcZib3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJ
 
 # Resources
 [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code)
+
 [AWS Credentials](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html)
+
 [Minecraft docker image](https://github.com/itzg/docker-minecraft-server)
+
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
