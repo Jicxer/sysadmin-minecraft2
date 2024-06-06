@@ -111,13 +111,40 @@ We would also want to ensure that the Minecraft server automatically restarts on
 Installing dependencies ensure that this pipeline will work accordingly.
 
 2. Set up AWS configuration and credentials.
+
+This is to ensure that we are able to provision resources and build the infastructure with terraform and ultimately set up the Minecraft server
+
 3. Run the Terraform script
+
+Terraform script will handle:
+- Minecraft Dcoker Image
+- AWS Resource Provision
+- IPv4 Address assignment for Minecraft Server
+- AWS Credentials
+
 4. Log into Minecraft
+
+Use the Public IPv4 that was established earlier from Terraform infastructure setup.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ### Commands
+
+1. Set up the Git Repository
+
+Clone the repository and navigate to the project directory
+```
+git clone https://github.com/Jicxer/sysadmin-minecraft2.git
+cd sysadmin-minecraft2.git
+``` 
+
+2. Initialize and apply the Terraform resources and configuration
+
+```
+terraform init
+terraform apply
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

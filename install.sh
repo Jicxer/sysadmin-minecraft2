@@ -3,12 +3,6 @@
 sudo apt-get update
 # Check dependencies
 
-# Install Git
-if ! command -v git >/dev/null 2>&1; then
-    echo "Git is not installed. Installing..."
-    sudo apt-get install git -y
-fi
-
 # Check if Terraform is already installed
 if [ ! -f "/usr/local/bin/terraform" ]; then
 
