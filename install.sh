@@ -1,6 +1,7 @@
 #!/bin/bash
 
-sudo apt-get update
+sudo apt-get update && apt-get install sudo
+sudo apt-get install unzip -y && sudo apt-get install curl -y
 # Check dependencies
 
 
