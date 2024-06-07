@@ -196,6 +196,8 @@ terraform apply
 ```
 
 This will create the EC2 instance and generate the 'inventory.ini" with a public instance IP address from the EC2 instance.
+The newly generated private key from the Terraform will be used to ssh into this instance.
+
 4. Start the Ansible playbook using the YAML configurations
 
 ```
