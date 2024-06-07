@@ -116,7 +116,7 @@ Depending on what profile you are using, edit the profile variable in variables.
 ```
 variable "profile"{
     description = "AWS Learner Lab Profile"
-    default = "learner_lab"
+    default = "<profile_name>"
 }
 ```
 For the case of this tutorial, the profile was under "learner_lab". Feel free to change this depending on what profile you placed the credentials under.
@@ -191,7 +191,7 @@ cd sysadmin-minecraft2.git
 3. Initialize and apply the Terraform resources and configuration
 
 ```
-terraform init -upgrade
+terraform init
 terraform apply
 ```
 
