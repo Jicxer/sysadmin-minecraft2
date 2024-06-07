@@ -55,13 +55,3 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
-
-    # Get the public IP of the instance
-    - name: Get instance public IP
-      id: ip
-      run: |
-        echo "public_ip=$(terraform output -raw instance_public_ip)" >> $GITHUB_ENV
-
-    # Print the instance public IP
-    - name: Print instance public IP
-      run: echo "The public IP is ${{ env.public_ip }}"
