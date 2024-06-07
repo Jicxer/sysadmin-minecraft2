@@ -25,8 +25,8 @@ resource "tls_private_key" "example" {
 }
 
 resource "local_file" "private_key" {
-  content  = tls_private_key.example.private_key_pem
-  filename = "${path.module}/private_key.pem"
+  content         = tls_private_key.example.private_key_pem
+  filename        = "${path.module}/private_key.pem"
   file_permission = "0400"
 }
 
@@ -36,10 +36,10 @@ resource "aws_key_pair" "deployer" {
 }
 
 provider "aws" {
-  region                 = var.region
+  region                   = var.region
   shared_credentials_files = ["~/.aws/credentials"]
-  shared_config_files    = ["~/.aws/config"]
-  profile                = var.profile
+  shared_config_files      = ["~/.aws/config"]
+  profile                  = var.profile
 }
 
 resource "aws_security_group" "minecraft_securitygroup" {
@@ -52,16 +52,16 @@ resource "aws_security_group" "minecraft_securitygroup" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
     cidr_blocks = [local.my_ip_cidr]
   }
 
   egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
@@ -85,4 +85,9 @@ ${self.public_ip} ansible_user=admin ansible_ssh_private_key_file="${path.module
 EOF
 EOT
   }
+}
+
+output "Instance_public_ip" {
+  description = "The public IP address of the Minecraft server"
+  value       = aws_instance.minecraft.public_ip
 }
