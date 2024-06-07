@@ -55,3 +55,12 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
+
+    - name: Run Ansible Playbook
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ansible
+        ansible-galaxy collection install community.docker
+        ansible-playbook -i inventory.ini playbook.yml
+      env:
+        ANSIBLE_HOST_KEY_CHECKING: 'false'
