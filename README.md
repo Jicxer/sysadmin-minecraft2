@@ -62,6 +62,18 @@ A [Minecraft docker image](https://github.com/itzg/docker-minecraft-server) will
 This docker image uses docker compose and is compatible with various server types.
 The documentation is provided [here](https://docker-minecraft-server.readthedocs.io/en/latest/)
 
+### Ansible
+
+Ansible allows for infastructure as code. It is used for provisioning and configuraiton. The configuration will be mostly accomplished by YAML using the ansible playbook. 
+
+#### Ansible Playbook and YAML
+Ansible Playbook will contain a list of instrutions for configuration written in YAML. The purpose of the playbook for the project is to install:
+- Docker
+- Minecraft Server Docker Image
+- Docker dependencies
+- Enabling Minecraft server on System Start up
+
+After running Ansible Playbook, the EC2 instance will have all the requirements to run the Minecraft Server.
 
 ### Amazon Web Services
 The user will need to set-up their AWS credentials for Terraform functionality.
@@ -100,6 +112,16 @@ Navigating to the AWS CLI credentials section will reveal the current session's 
 
 Be sure to copy these contents to paste into the ```~/.aws/credentials``` file.
 
+Depending on what profile you are using, edit the profile variable in variables.tf
+```
+variable "profile"{
+    description = "AWS Learner Lab Profile"
+    default = "<profile_name>"
+}
+```
+For the case of this tutorial, the profile was under "learner_lab". Feel free to change this depending on what profile you placed the credentials under.
+This will specify what AWS account will be used.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Diagram
@@ -116,14 +138,33 @@ This is to ensure that we are able to provision resources and build the infastru
 
 3. Run the Terraform script
 
+``` 
+terraform init
+terraform apply
+```
+
 Terraform script will handle:
-- Minecraft Dcoker Image
+- Minecraft Server Docker Image
 - AWS Resource Provision
+
+    This will create an EC2 instance called "minecraft"
+    
+    The instance type will be "t2.small" and the operating system will be Debian AMI.
+    
+    This will also create an ansible inventory "inventory.ini" that will be used to SSH into the instance and install the Minecraft Server Docker Image dependencies.
+
+    A new key-pair will be created for the sake of Ansible connection to the EC2.
+
 - IPv4 Address assignment for Minecraft Server
+- Minecraft Security Group
+
+    The security group will allow the Minecraft port of 25565 and the ssh port of 22 from any CIDR block or IP. 
+    This is for the purpose of ssh into the instance and install required dependencies.
 - AWS Credentials
 
+4. Run Ansible Playbook to configure EC2 Instance
 
-4. Log into Minecraft
+5. Log into Minecraft
 
 Use the Public IPv4 that was established earlier from Terraform infastructure setup.
 
@@ -135,33 +176,47 @@ Use the Public IPv4 that was established earlier from Terraform infastructure se
 1. Set up the Git Repository
 
 Clone the repository and navigate to the project directory
+
 ```
 git clone https://github.com/Jicxer/sysadmin-minecraft2.git
 cd sysadmin-minecraft2.git
-``` 
+```
 
-2. Initialize and apply the Terraform resources and configuration
+2. Install dependencies
 
 ```
-terraform init -upgrade
+./install.sh
+```
+
+3. Initialize and apply the Terraform resources and configuration
+
+```
+terraform init
 terraform apply
 ```
 
 This will create the EC2 instance and generate the 'inventory.ini" with a public instance IP address from the EC2 instance.
-3. Start the Ansible playbook using the YAML configurations
+The newly generated private key from the Terraform will be used to ssh into this instance.
+
+4. Start the Ansible playbook using the YAML configurations
+
 ```
 ansible-playbook -i inventory.ini playbook.yml
 ```
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Connecting
 
+Once Ansible Playbook has finished configuring the EC2 Instance, the player can now connect to the Minecraft Server.
+
+The Public IP address is provided as an output after running Ansible.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Next Steps
 
+Installing Mods on Minecraft
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Resources

@@ -10,9 +10,9 @@ variable "region" {
   default     = "us-west-2"
 }
 
-variable "profile"{
-    description = "AWS Learner Lab Profile"
-    default = "learner_lab"
+variable "profile" {
+  description = "AWS Learner Lab Profile"
+  default     = "learner_lab"
 }
 
 variable "key_name" {
@@ -22,5 +22,5 @@ variable "key_name" {
 
 variable "existing_security_group_id" {
   description = "ID of the pre-existing security group"
-  default = "sg-00e46086372a8a183"
+  default     = "sg-00e46086372a8a183"
 }

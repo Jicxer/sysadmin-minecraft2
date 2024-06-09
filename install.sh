@@ -1,6 +1,7 @@
 #!/bin/bash
 
-sudo apt-get update
+sudo apt-get update && apt-get install sudo
+sudo apt-get install unzip -y && sudo apt-get install curl -y
 # Check dependencies
 
 sudo
@@ -10,7 +11,7 @@ sudo
 if [ ! -f "/usr/local/bin/terraform" ]; then
 
     # Set the desired Terraform version
-    TERRAFORM_VERSION="1.2.9"
+    TERRAFORM_VERSION="1.8.5"
 
     # Download Terraform. Adjust the version number as necessary.
     wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
