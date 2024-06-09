@@ -120,7 +120,7 @@ variable "profile"{
     default = "<profile_name>"
 }
 ```
-For the case of this tutorial, the profile was under "learner_lab". Feel free to change this depending on what profile you placed the credentials under.
+For the case of this tutorial, the profile was under "learner_lab". However, the default profile name will be under "default." Feel free to change this depending on what profile you placed the credentials under.
 This will specify what AWS account will be used.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -239,5 +239,7 @@ Installing Mods on Minecraft
 [Adding IP Address to Terraform](https://stackoverflow.com/questions/46763287/i-want-to-identify-the-public-ip-of-the-terraform-execution-environment-and-add)
 
 [Install Docker using Ansible Playbook](https://www.digitalocean.com/community/tutorials/how-to-use-ansible-to-install-and-set-up-docker-on-ubuntu-20-04)
+
+[Random Pet Names](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
