@@ -12,7 +12,7 @@ variable "region" {
 
 variable "profile" {
   description = "AWS Learner Lab Profile"
-  default     = "learner_lab"
+  default     = "default"
 }
 
 variable "key_name" {
