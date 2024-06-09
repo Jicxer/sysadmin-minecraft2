@@ -4,8 +4,6 @@ sudo apt-get update && apt-get install sudo
 sudo apt-get install unzip -y && sudo apt-get install curl -y
 # Check dependencies
 
-sudo
-
 
 # Check if Terraform is already installed
 if [ ! -f "/usr/local/bin/terraform" ]; then
