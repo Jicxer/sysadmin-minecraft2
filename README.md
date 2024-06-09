@@ -98,6 +98,7 @@ Follow the steps below to configure AWS credentials:
 1. Start Learner Lab
 
 Do this by clicking on "Start Lab" button.
+
 2. Once the lab has started, navigate to AWS Details
 
 This will show details about the current Lab session. The user should be able to access the AWS CLI credentials for this session by clicking on the Show button next to
@@ -187,6 +188,11 @@ cd sysadmin-minecraft2.git
 ```
 ./install.sh
 ```
+
+3. Set up AWS Credentials
+
+Refer to the [**Amazon Web Services**](#amazon-web-services) section to configure credentials.
+This is needed to create AWS resources.
 
 3. Initialize and apply the Terraform resources and configuration
 

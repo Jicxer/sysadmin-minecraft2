@@ -73,7 +73,3 @@ jobs:
       env:
         ANSIBLE_HOST_KEY_CHECKING: 'false'
         public_ip: ${{ steps.ip.outputs.public_ip }}
-
-      # Print the instance public IP
-    - name: Print instance public IP
-      run: echo "The public IP is ${{ env.public_ip }}"
