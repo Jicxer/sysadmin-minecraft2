@@ -30,8 +30,13 @@ resource "local_file" "private_key" {
   file_permission = "0400"
 }
 
+resource "random_pet" "key_name" {
+  length    = 2
+  separator = "-"
+}
+
 resource "aws_key_pair" "deployer" {
-  key_name   = "minecraft-key"
+  key_name   = random_pet.key_name.id
   public_key = tls_private_key.example.public_key_openssh
 }
 
