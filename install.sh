@@ -3,6 +3,8 @@
 sudo apt-get update
 # Check dependencies
 
+sudo
+
 
 # Check if Terraform is already installed
 if [ ! -f "/usr/local/bin/terraform" ]; then

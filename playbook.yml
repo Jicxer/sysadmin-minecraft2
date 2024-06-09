@@ -15,19 +15,19 @@
           - gnupg
         state: present
 
-    - name: Add Docker GPG apt Key
+    - name: Add Docker GPG apt key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
         state: present
 
-    - name: Add Docker Repository
+    - name: Add Docker repository
       apt_repository:
         repo: deb https://download.docker.com/linux/ubuntu focal stable
         state: present
 
-    - name: Update apt and install docker-ce
+    - name: Update apt and install Docker CE
       apt:
-        name: 
+        name:
           - docker-ce
           - docker-ce-cli
           - containerd.io
@@ -47,7 +47,6 @@
         state: directory
         mode: '0755'
 
-        
     - name: Create Docker Compose file
       copy:
         dest: /minecraft-server/docker-compose.yml
@@ -65,7 +64,11 @@
                 EULA: "TRUE"
               volumes:
                 - ./data:/data
-      notify: Start Minecraft server
+
+    - name: Start Minecraft server using Docker Compose
+      community.docker.docker_compose_v2:
+        project_src: /minecraft-server
+        state: present
 
     - name: Ensure the Minecraft server starts on reboot
       copy:
@@ -78,32 +81,29 @@
 
           [Service]
           WorkingDirectory=/minecraft-server
-          ExecStart=/usr/bin/docker-compose up
+          ExecStart=/usr/bin/docker-compose up -d
           ExecStop=/usr/bin/docker-compose down
           Restart=always
           User=root
 
           [Install]
           WantedBy=multi-user.target
-      notify: Reload systemd
 
-  handlers:
-    - name: Update apt cache
-      apt:
-        update_cache: yes
-
-    - name: Start Minecraft server
-      command: sudo docker compose up -d
-      args:
-        chdir: /minecraft-server
-
-    - name: Check if service is running
-      command: sudo docker compose ps
-      args:
-        chdir: /minecraft-server
+    - name: Reload systemd to pick up new minecraft.service
+      command: systemctl daemon-reload
 
     - name: Enable and start Minecraft service
       systemd:
         name: minecraft
         enabled: yes
         state: started
+
+    - name: Check if Minecraft service is running
+      community.docker.docker_compose_v2:
+        project_src: /minecraft-server
+        state: present
+      register: docker_ps_output
+
+    - name: Show Docker Compose ps output
+      debug:
+        var: docker_ps_output
