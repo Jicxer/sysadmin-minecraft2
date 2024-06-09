@@ -3,7 +3,7 @@
 sudo apt-get update && apt-get install sudo
 sudo apt-get install unzip -y && sudo apt-get install curl -y
 # Check dependencies
-
+sudo apt-get install wget -y
 
 # Check if Terraform is already installed
 if [ ! -f "/usr/local/bin/terraform" ]; then
@@ -66,7 +66,7 @@ if command -v docker >/dev/null 2>&1; then
     docker --version
 else
     echo "Docker is not installed. Proceeding with installation..."
-    sudo apt-get install docker.io
+    sudo apt-get install docker.io -y
     docker --version
 fi
 
